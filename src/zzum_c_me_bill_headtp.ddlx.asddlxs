@@ -1,0 +1,114 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: { typeName: 'Billing Document Header',
+                  typeNamePlural: 'Billing Documents',
+                  title: { type: #STANDARD, label: 'Billing Document', value: 'BillId' } }
+
+annotate entity zzum_C_bill_header with
+
+{
+  @EndUserText.label: 'Billing ID'
+  @UI.facet: [ { id: 'BillingDocHead',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: 'Header',
+                 position: 10 },
+               { id: 'BillingInfo',
+                 purpose: #HEADER,
+                 label: 'Bill',
+                 type: #FIELDGROUP_REFERENCE,
+                 targetQualifier: 'BillInfo',
+                 position: 10 },
+               { id: 'BillingNet',
+                 purpose: #HEADER,
+                 label: 'Net',
+                 type: #FIELDGROUP_REFERENCE,
+                 targetQualifier: 'BillNet',
+                 position: 40 },
+               { id: 'AdminInfo',
+                 purpose: #HEADER,
+                 label: 'Administrative data',
+                 type: #FIELDGROUP_REFERENCE,
+                 targetQualifier: 'AdminInfo',
+                 position: 70 } ]
+  @UI.fieldGroup: [ { qualifier: 'BillInfo',
+                      position: 10,
+                      label: 'Bill Id',
+                      criticality: 'NetIndicator',
+                      criticalityRepresentation: #WITHOUT_ICON } ]
+  @UI.identification: [ { position: 10 } ]
+  @UI.lineItem: [ { position: 10, criticality: 'NetIndicator', criticalityRepresentation: #WITHOUT_ICON } ]
+  @UI.selectionField: [ { position: 10 } ]
+  BillId;
+
+  @Consumption.valueHelpDefinition: [ { entity: { element: 'BillingDocumentType', name: 'I_BillingDocumentType' } } ]
+  @EndUserText.label: 'Bill type'
+  @UI.fieldGroup: [ { qualifier: 'BillInfo', position: 30, label: 'Bill type' } ]
+  @UI.identification: [ { position: 20 } ]
+  @UI.lineItem: [ { position: 20 } ]
+  @UI.selectionField: [ { position: 20 } ]
+  BillType;
+
+  @EndUserText.label: 'Bill Date'
+  @UI.fieldGroup: [ { qualifier: 'BillInfo', position: 40, label: 'Bill date' } ]
+  @UI.identification: [ { position: 30 } ]
+  @UI.lineItem: [ { position: 30 } ]
+  BillDate;
+
+  @EndUserText.label: 'Customer ID'
+  @UI.fieldGroup: [ { qualifier: 'BillInfo',
+                      position: 20,
+                      label: 'Customer ID',
+                      criticality: 'NetIndicator',
+                      criticalityRepresentation: #WITHOUT_ICON } ]
+  @UI.identification: [ { position: 40 } ]
+  @UI.lineItem: [ { position: 40 } ]
+  @UI.selectionField: [ { position: 40 } ]
+  CustomerId;
+
+  @EndUserText.label: 'Net Amount'
+  @UI.fieldGroup: [ { qualifier: 'BillNet',
+                      position: 10,
+                      label: 'Net amount',
+                      criticality: 'NetIndicator',
+                      criticalityRepresentation: #WITHOUT_ICON } ]
+  @UI.identification: [ { position: 50 } ]
+  @UI.lineItem: [ { position: 50 } ]
+  NetAmount;
+
+  @UI.identification: [ { position: 60 } ]
+  @UI.lineItem: [ { position: 60 } ]
+//  @UI.fieldGroup: [{  qualifier: 'BillNet', position: 20 }]
+  Currency;
+
+  @UI.fieldGroup: [ { qualifier: 'BillNet', position: 20 } ]
+  @UI.identification: [ { position: 70 } ]
+  @UI.lineItem: [ { position: 70 } ]
+  @UI.selectionField: [ { position: 70 } ]
+  SalesOrg;
+
+  @EndUserText.label: 'Created By'
+  //  @UI.lineItem: [ { position: 80 } ]
+  @UI.fieldGroup: [ { qualifier: 'AdminInfo', position: 10 } ]
+  Createdby;
+
+  @EndUserText.label: 'Created At'
+  //  @UI.lineItem: [ { position: 80 } ]
+  @UI.fieldGroup: [ { qualifier: 'AdminInfo', position: 20 } ]
+  Createdat;
+
+  @EndUserText.label: 'Last changed by'
+  //  @UI.lineItem: [ { position: 90 } ]
+  @UI.fieldGroup: [ { qualifier: 'AdminInfo', position: 30 } ]
+  Lastchangedby;
+
+  @EndUserText.label: 'Last change time'
+  //  @UI.lineItem: [ { position: 100 } ]
+  @UI.fieldGroup: [ { qualifier: 'AdminInfo', position: 40 } ]
+  Lastchangedat;
+
+  @EndUserText.label: 'Local last change time'
+  //  @UI.lineItem: [ { position: 110 } ]
+  @UI.fieldGroup: [ { qualifier: 'AdminInfo', position: 50 } ]
+  Locallastchangedat;
+}
