@@ -1,0 +1,74 @@
+managed implementation in class zbp_zum_r_bill_header unique;
+strict ( 2 );
+with draft;
+
+define behavior for zzum_R_bill_header alias BillHeader
+persistent table zzum_bill_header
+draft table zzum_bill_head_d
+lock master total etag Lastchangedat
+authorization master ( instance )
+etag master Locallastchangedat
+{
+  create;
+  update;
+  delete;
+
+  draft action Resume;
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft determine action Prepare;
+
+  field ( readonly : update ) BillId;
+
+
+
+  association _BillItem { create; with draft; }
+
+  mapping for zzum_bill_header
+    {
+      BillId             = bill_id;
+      BillType           = bill_type;
+      BillDate           = bill_date;
+      CustomerId         = customer_id;
+      NetAmount          = net_amount;
+      Currency           = currency;
+      SalesOrg           = sales_org;
+      CreatedBy          = createdby;
+      CreateDat          = createdat;
+      LastChangedBy      = lastchangedby;
+      LastChangeDat      = lastchangedat;
+      LocalLastChangeDat = locallastchangedat;
+    }
+
+}
+
+define behavior for zzum_R_bill_itemtp alias BillItem
+persistent table zzum_bill_item
+draft table zzum_bill_item_d
+lock dependent by _BillHeader
+authorization dependent by _BillHeader
+{
+  update;
+  delete;
+  field ( readonly ) BillId, Description;
+  field ( readonly : update ) ItemNo;
+  association _BillHeader { with draft; }
+
+  mapping for zzum_bill_item
+    {
+      BillId      = bill_id;
+      ItemNo      = item_no;
+      MaterialId  = material_id;
+      Description = description;
+      Quantity    = quantity;
+      ItemAmount  = item_amount;
+      Currency    = currency;
+      Uom         = uom;
+      Createdat = createdat;
+      Createdby = createdby;
+      Lastchangedat = lastchangedat;
+      Lastchangedby = lastchangedby;
+      Locallastchangedat = locallastchangedat;
+    }
+}

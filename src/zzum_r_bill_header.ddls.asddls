@@ -10,7 +10,8 @@
 define root view entity zzum_R_bill_header
   as select from zzum_I_bill_header
 
-//composition of target_data_source_name as _association_name
+  composition [0..*] of zzum_R_bill_itemtp as _BillItem
+
 {
   key BillId,
 
@@ -21,8 +22,9 @@ define root view entity zzum_R_bill_header
       @Semantics.amount.currencyCode: 'Currency'
       NetAmount,
 
-      case when NetAmount < 0 then 1 when NetAmount >= 1000 then 3
-      when NetAmount >= 0 and NetAmount < 1000 then 2 end as NetIndicator,
+      case when NetAmount < 0 then 1
+      when NetAmount >= 0 and NetAmount < 1000 then 2
+      else 3 end          as NetIndicator,
 
       Currency,
       SalesOrg,
@@ -40,6 +42,7 @@ define root view entity zzum_R_bill_header
       Lastchangedat,
 
       @Semantics.systemDate.localInstanceLastChangedAt: true
-      Locallastchangedat
-//    _association_name // Make association public
+      Locallastchangedat,
+
+      _BillItem // Make association public
 }

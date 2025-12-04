@@ -1,0 +1,71 @@
+@Metadata.layer: #CORE
+
+annotate entity zzum_C_bill_itemtp with
+
+{
+  @EndUserText.label: 'Bill ID'
+  @UI.facet: [ { id: 'BillingDocItem',
+                 type: #IDENTIFICATION_REFERENCE,
+                 purpose: #STANDARD,
+                 label: 'Item',
+                 position: 10 } ]
+  @UI.identification: [ { position: 10 } ]
+  @UI.lineItem: [ { position: 10 } ]
+  @UI.selectionField: [ { position: 10 } ]
+  BillId;
+
+  @EndUserText.label: 'Item Number'
+  @UI.identification: [ { position: 20 } ]
+  @UI.lineItem: [ { position: 20 } ]
+  @UI.selectionField: [ { position: 20 } ]
+  ItemNo;
+
+  @UI.identification: [ { position: 30 } ]
+  @UI.lineItem: [ { position: 30 } ]
+  @UI.selectionField: [ { position: 30 } ]
+  MaterialId;
+
+  @UI.identification: [ { position: 40 } ]
+  @UI.lineItem: [ { position: 40 } ]
+  Description;
+
+  @UI.identification: [ { position: 50 } ]
+  @UI.lineItem: [ { position: 50 } ]
+
+  Quantity;
+
+  @EndUserText.label: 'Amount'
+  @UI.identification: [ { position: 60 } ]
+  @UI.lineItem: [ { position: 60 } ]
+
+  ItemAmount;
+
+  @UI.identification: [ { position: 70 } ]
+  @UI.lineItem: [ { position: 70 } ]
+  @UI.selectionField: [ { position: 30 } ]
+  Currency;
+
+  @UI.identification: [ { position: 80 } ]
+  @UI.lineItem: [ { position: 80 } ]
+  @UI.selectionField: [ { position: 40 } ]
+  Uom;
+
+  @EndUserText.label: 'Created by'
+  Createdby;
+
+  @EndUserText.label: 'Created at'
+  Createdat;
+
+  @EndUserText.label: 'Last changed by'
+  Lastchangedby;
+
+  @EndUserText.label: 'Last changed at'
+  Lastchangedat;
+
+  @EndUserText.label: 'Local last changed at'
+  Locallastchangedat;
+
+  /* Associations */
+  @UI.hidden: true
+  _BillHeader;
+}

@@ -4,15 +4,21 @@
                   typeNamePlural: 'Billing Documents',
                   title: { type: #STANDARD, label: 'Billing Document', value: 'BillId' } }
 
-annotate entity zzum_C_bill_header with
-
+annotate entity zzum_C_bill_headerTP
+    with 
 {
-  @EndUserText.label: 'Billing ID'
-  @UI.facet: [ { id: 'BillingDocHead',
-                 purpose: #STANDARD,
-                 type: #IDENTIFICATION_REFERENCE,
-                 label: 'Header',
-                 position: 10 },
+    @EndUserText.label: 'Billing ID'
+  @UI.facet: [ 
+//                { id: 'BillingDocHead',
+//                 purpose: #STANDARD,
+//                 type: #IDENTIFICATION_REFERENCE,
+//                 label: 'Header',
+//                 position: 10 },
+                 { id: 'BillingDocItem',
+                   purpose: #STANDARD,
+                   type: #LINEITEM_REFERENCE
+                   , position: 20
+                   , targetElement: '_BillItem' },
                { id: 'BillingInfo',
                  purpose: #HEADER,
                  label: 'Bill',
@@ -111,4 +117,5 @@ annotate entity zzum_C_bill_header with
   //  @UI.lineItem: [ { position: 110 } ]
   @UI.fieldGroup: [ { qualifier: 'AdminInfo', position: 50 } ]
   Locallastchangedat;
+    
 }

@@ -1,0 +1,5 @@
+CLASS zbp_zum_r_bill_header DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zzum_r_bill_header.
+ENDCLASS.
+
+CLASS zbp_zum_r_bill_header IMPLEMENTATION.
+ENDCLASS.

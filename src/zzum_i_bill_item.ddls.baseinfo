@@ -3,12 +3,10 @@
 {
 "FROM":
 [
-"ZZUM_I_BILL_HEADER"
+"ZZUM_BILL_ITEM"
 ],
 "ASSOCIATED":
-[
-"ZZUM_R_BILL_ITEMTP"
-],
+[],
 "BASE":
 [],
 "ANNO_REF":

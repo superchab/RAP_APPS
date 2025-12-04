@@ -1,0 +1,25 @@
+projection;
+strict ( 2 );
+use draft;
+define behavior for zzum_C_bill_headerTP alias BillHeader
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Resume;
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+
+  use association _BillItem { create; with draft; }
+}
+
+define behavior for zzum_C_bill_itemtp alias BillItem
+{
+  use update;
+  use delete;
+
+  use association _BillHeader  { with draft; }
+}

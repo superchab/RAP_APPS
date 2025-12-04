@@ -1,4 +1,5 @@
 @EndUserText.label: 'Ser Def for Billing Document'
 define service Zzum_ui_bill_head {
-  expose zzum_C_bill_header as BillingHeader;
+  expose zzum_C_bill_headerTP as BillingDocHeader;
+  expose zzum_C_bill_itemtp   as BillingDocItem;
 }
