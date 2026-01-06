@@ -13,7 +13,8 @@ define behavior for zzum_C_bill_headerTP alias BillHeader
   use action Discard;
   use action Prepare;
 
-  use action Change_Currency;
+  use action ChangeCurrency;
+  use action CreateBillDocHeader;
 
   use association _BillItem { create; with draft; }
 }

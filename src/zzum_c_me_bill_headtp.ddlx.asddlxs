@@ -1,20 +1,21 @@
 @Metadata.layer: #CORE
 
+@UI.createHidden: true
+
 @UI.headerInfo: { typeName: 'Billing Document Header',
                   typeNamePlural: 'Billing Documents',
                   title: { type: #STANDARD, label: 'Billing Document', value: 'BillId' } }
 
-annotate entity zzum_C_bill_headerTP
-    with
+annotate entity zzum_C_bill_headerTP with
 
 {
   @EndUserText.label: 'Billing ID'
   @UI.facet: [
-//                { id: 'BillingDocHead',
-//                 purpose: #STANDARD,
-//                 type: #IDENTIFICATION_REFERENCE,
-//                 label: 'Header',
-//                 position: 10 },
+  //                { id: 'BillingDocHead',
+  //                 purpose: #STANDARD,
+  //                 type: #IDENTIFICATION_REFERENCE,
+  //                 label: 'Header',
+  //                 position: 10 },
                  { id: 'BillingDocItem',
                    purpose: #STANDARD,
                    type: #LINEITEM_REFERENCE
@@ -45,7 +46,8 @@ annotate entity zzum_C_bill_headerTP
                       criticalityRepresentation: #WITHOUT_ICON } ]
   @UI.identification: [ { position: 10 } ]
   @UI.lineItem: [ { position: 10, criticality: 'NetIndicator', criticalityRepresentation: #WITHOUT_ICON },
-                  { position: 10, type: #FOR_ACTION, label: 'Currency', dataAction: 'Change_Currency'} ]
+                  { position: 10, type: #FOR_ACTION, label: 'Currency', dataAction: 'ChangeCurrency'},
+                  { position: 20, type: #FOR_ACTION, label: 'Create Bill', dataAction: 'CreateBillDocHeader'} ]
   @UI.selectionField: [ { position: 10 } ]
   BillId;
 
@@ -84,13 +86,13 @@ annotate entity zzum_C_bill_headerTP
   @UI.lineItem: [ { position: 50 } ]
   NetAmount;
 
-  @Consumption.valueHelpDefinition: [{ entity: { name: 'I_Currency', element: 'Currency' } }]
+  @Consumption.valueHelpDefinition: [ { entity: { name: 'I_Currency', element: 'Currency' } } ]
   @UI.identification: [ { position: 60 } ]
   @UI.lineItem: [ { position: 60 } ]
-//  @UI.fieldGroup: [{  qualifier: 'BillNet', position: 20 }]
+  //  @UI.fieldGroup: [{  qualifier: 'BillNet', position: 20 }]
   Currency;
 
-  @Consumption.valueHelpDefinition: [{ entity: { name: 'C_SalesOrganizationVH', element: 'SalesOrganization' } }]
+  @Consumption.valueHelpDefinition: [ { entity: { name: 'C_SalesOrganizationVH', element: 'SalesOrganization' } } ]
   @UI.fieldGroup: [ { qualifier: 'BillNet', position: 20 } ]
   @UI.identification: [ { position: 70 } ]
   @UI.lineItem: [ { position: 70 } ]

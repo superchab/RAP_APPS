@@ -12,17 +12,21 @@ etag master Locallastchangedat
   create;
   update;
   delete;
+  action ChangeCurrency result [1] $self;
+  static factory action CreateBillDocHeader parameter zzum_a_create_billH_params [1];
+
+
+  validation ValidateAmount on save { create; update; field NetAmount; }
 
   draft action Resume;
   draft action Edit;
   draft action Activate optimized;
   draft action Discard;
-  draft determine action Prepare;
+  draft determine action Prepare { validation ValidateAmount; }
 
 
-  action Change_Currency result [1] $self;
 
-  field ( readonly : update ) BillId;
+  field ( readonly : update ) BillId, NetAmount;
 
 
 
@@ -54,24 +58,31 @@ authorization dependent by _BillHeader
 {
   update;
   delete;
+
+  determination CalculateTotalAmount on modify { create; delete; update; field ItemAmount; }
+
   field ( readonly ) BillId, Description;
   field ( readonly : update ) ItemNo;
+
+
   association _BillHeader { with draft; }
 
+side effects { field ItemAmount affects field _BillHeader.NetAmount;
+}
   mapping for zzum_bill_item
     {
-      BillId      = bill_id;
-      ItemNo      = item_no;
-      MaterialId  = material_id;
-      Description = description;
-      Quantity    = quantity;
-      ItemAmount  = item_amount;
-      Currency    = currency;
-      Uom         = uom;
-      Createdat = createdat;
-      Createdby = createdby;
-      Lastchangedat = lastchangedat;
-      Lastchangedby = lastchangedby;
+      BillId             = bill_id;
+      ItemNo             = item_no;
+      MaterialId         = material_id;
+      Description        = description;
+      Quantity           = quantity;
+      ItemAmount         = item_amount;
+      Currency           = currency;
+      Uom                = uom;
+      Createdat          = createdat;
+      Createdby          = createdby;
+      Lastchangedat      = lastchangedat;
+      Lastchangedby      = lastchangedby;
       Locallastchangedat = locallastchangedat;
     }
 }
