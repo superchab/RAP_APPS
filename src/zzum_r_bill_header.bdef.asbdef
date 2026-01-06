@@ -19,6 +19,9 @@ etag master Locallastchangedat
   draft action Discard;
   draft determine action Prepare;
 
+
+  action Change_Currency result [1] $self;
+
   field ( readonly : update ) BillId;
 
 

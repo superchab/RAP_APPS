@@ -5,10 +5,11 @@
                   title: { type: #STANDARD, label: 'Billing Document', value: 'BillId' } }
 
 annotate entity zzum_C_bill_headerTP
-    with 
+    with
+
 {
-    @EndUserText.label: 'Billing ID'
-  @UI.facet: [ 
+  @EndUserText.label: 'Billing ID'
+  @UI.facet: [
 //                { id: 'BillingDocHead',
 //                 purpose: #STANDARD,
 //                 type: #IDENTIFICATION_REFERENCE,
@@ -43,7 +44,8 @@ annotate entity zzum_C_bill_headerTP
                       criticality: 'NetIndicator',
                       criticalityRepresentation: #WITHOUT_ICON } ]
   @UI.identification: [ { position: 10 } ]
-  @UI.lineItem: [ { position: 10, criticality: 'NetIndicator', criticalityRepresentation: #WITHOUT_ICON } ]
+  @UI.lineItem: [ { position: 10, criticality: 'NetIndicator', criticalityRepresentation: #WITHOUT_ICON },
+                  { position: 10, type: #FOR_ACTION, label: 'Currency', dataAction: 'Change_Currency'} ]
   @UI.selectionField: [ { position: 10 } ]
   BillId;
 
@@ -82,11 +84,13 @@ annotate entity zzum_C_bill_headerTP
   @UI.lineItem: [ { position: 50 } ]
   NetAmount;
 
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'I_Currency', element: 'Currency' } }]
   @UI.identification: [ { position: 60 } ]
   @UI.lineItem: [ { position: 60 } ]
 //  @UI.fieldGroup: [{  qualifier: 'BillNet', position: 20 }]
   Currency;
 
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'C_SalesOrganizationVH', element: 'SalesOrganization' } }]
   @UI.fieldGroup: [ { qualifier: 'BillNet', position: 20 } ]
   @UI.identification: [ { position: 70 } ]
   @UI.lineItem: [ { position: 70 } ]
@@ -117,5 +121,4 @@ annotate entity zzum_C_bill_headerTP
   //  @UI.lineItem: [ { position: 110 } ]
   @UI.fieldGroup: [ { qualifier: 'AdminInfo', position: 50 } ]
   Locallastchangedat;
-    
 }
