@@ -3,14 +3,17 @@ define abstract entity zzum_a_create_billH_params
 
 {
   @EndUserText.label: 'Bill ID'
-  BillId: abap.numc(10);
-  
-  
+  BillId     : abap.numc(10);
+
+  @Consumption.valueHelpDefinition: [{ entity: { name: '/DMO/I_Customer', element: 'CustomerID'} }]
+  @EndUserText.label: 'Customer ID'
+  customerid : abap.char( 10 );
+
   @Consumption.valueHelpDefinition: [{ entity: { name: 'zzum_billtype_VH', element: 'BillType'} }]
   @EndUserText.label: 'Bill type'
-  Bill_Type : abap.char(4);
+  Bill_Type  : abap.char(4);
 
   @Consumption.valueHelpDefinition: [ { entity: { name: 'C_SalesOrganizationVH', element: 'CompanyCode' } } ]
   @EndUserText.label: 'Sales organization'
-  Sales_Org : abap.char(4);
+  Sales_Org  : abap.char(4);
 }

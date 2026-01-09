@@ -10,13 +10,13 @@ authorization master ( instance )
 etag master Locallastchangedat
 {
   create;
-  update;
+  update (features : instance);
   delete;
   action ChangeCurrency result [1] $self;
   static factory action CreateBillDocHeader parameter zzum_a_create_billH_params [1];
 
 
-  validation ValidateAmount on save { create; update; field NetAmount; }
+  validation ValidateAmount on save { create; field NetAmount; }
 
   draft action Resume;
   draft action Edit;
@@ -60,7 +60,7 @@ authorization dependent by _BillHeader
   delete;
 
   determination CalculateTotalAmount on modify { create; delete; update; field ItemAmount; }
-
+  determination FillItemDetails on modify { field ItemNo; }
   field ( readonly ) BillId, Description;
   field ( readonly : update ) ItemNo;
 
@@ -68,6 +68,7 @@ authorization dependent by _BillHeader
   association _BillHeader { with draft; }
 
 side effects { field ItemAmount affects field _BillHeader.NetAmount;
+               field ItemNo affects field Description, field ItemAmount, field Currency, field Uom, field Quantity;
 }
   mapping for zzum_bill_item
     {
